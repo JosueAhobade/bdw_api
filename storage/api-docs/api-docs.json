@@ -1,0 +1,458 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "BDW API Documentation",
+        "description": "Documentation de l'API REST du système BDW.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "Serveur principal"
+        }
+    ],
+    "paths": {
+        "/api/depenses": {
+            "get": {
+                "tags": [
+                    "Dépenses"
+                ],
+                "summary": "Liste des dépenses",
+                "operationId": "81581bb883f97976927b088c7f3f1dbf",
+                "responses": {
+                    "200": {
+                        "description": "Liste récupérée"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Dépenses"
+                ],
+                "summary": "Créer une dépense",
+                "operationId": "2e18601557dd29fb04c186c96d8509fc",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Depense"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Dépense créée"
+                    }
+                }
+            }
+        },
+        "/api/depenses/{id}": {
+            "get": {
+                "tags": [
+                    "Dépenses"
+                ],
+                "summary": "Afficher une dépense",
+                "operationId": "e19b897f489b799497f9abf942da72ab",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la dépense",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Données récupérées"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Dépenses"
+                ],
+                "summary": "Modifier une dépense",
+                "operationId": "b2449b4a6d1c988a6e96e43df3a34524",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la dépense",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Depense"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Dépense mise à jour"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Dépenses"
+                ],
+                "summary": "Supprimer une dépense",
+                "operationId": "66f04a3cd1fc3a39d4474dd52a53cd3e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la dépense",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Dépense supprimée"
+                    }
+                }
+            }
+        },
+        "/api/formations": {
+            "get": {
+                "tags": [
+                    "Formations"
+                ],
+                "summary": "Liste des formations",
+                "operationId": "5e9ba5829719dbaecae7703885f2ee57",
+                "responses": {
+                    "200": {
+                        "description": "Liste récupérée"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Formations"
+                ],
+                "summary": "Créer une formation",
+                "operationId": "d4bdb116fe43831c677b3dc78eeb2a12",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Formation"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Formation créée"
+                    }
+                }
+            }
+        },
+        "/api/formations/{id}": {
+            "get": {
+                "tags": [
+                    "Formations"
+                ],
+                "summary": "Afficher une formation",
+                "operationId": "24da9097cee392ecc650ef80ab836833",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Données récupérées"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Formations"
+                ],
+                "summary": "Modifier une formation",
+                "operationId": "2a55058c3960066724a16ce6e42d138e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Formation"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Formation mise à jour"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Formations"
+                ],
+                "summary": "Supprimer une formation",
+                "operationId": "be3dcfea654ed79f9a14615553cf9f1f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Formation supprimée"
+                    }
+                }
+            }
+        },
+        "/api/recettes": {
+            "get": {
+                "tags": [
+                    "Recettes"
+                ],
+                "summary": "Liste des recettes",
+                "operationId": "84792ae35c0177166697c9c639835736",
+                "responses": {
+                    "200": {
+                        "description": "Liste récupérée"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Recettes"
+                ],
+                "summary": "Créer une recette",
+                "operationId": "9762b3483a480df2c41e3fd2cd330db1",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Recette"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Recette créée"
+                    }
+                }
+            }
+        },
+        "/api/recettes/{id}": {
+            "get": {
+                "tags": [
+                    "Recettes"
+                ],
+                "summary": "Afficher une recette",
+                "operationId": "93188588e7640b72013ad3c173c388ed",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Données récupérées"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Recettes"
+                ],
+                "summary": "Modifier une recette",
+                "operationId": "50ed587d1f1c33b69e64de860d6763f4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Recette"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Recette mise à jour"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Recettes"
+                ],
+                "summary": "Supprimer une recette",
+                "operationId": "49f18ce75c2471bc8de7ed6950e40c5c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Recette supprimée"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Depense": {
+                "title": "Depense",
+                "required": [
+                    "montant",
+                    "type_depense"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "montant": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "type_depense": {
+                        "type": "string"
+                    },
+                    "date_depense": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "status": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Formation": {
+                "title": "Formation",
+                "required": [
+                    "titre",
+                    "prix"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "titre": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "objectif": {
+                        "type": "string"
+                    },
+                    "programme": {
+                        "type": "string"
+                    },
+                    "duree": {
+                        "type": "integer"
+                    },
+                    "niveau": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "prix": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "langue": {
+                        "type": "string"
+                    },
+                    "formateur_id": {
+                        "type": "integer"
+                    },
+                    "status": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Recette": {
+                "required": [
+                    "montant",
+                    "type_recette"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "montant": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "type_recette": {
+                        "type": "string"
+                    },
+                    "mode_paiement": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "date_recette": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "status": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Dépenses",
+            "description": "Dépenses"
+        },
+        {
+            "name": "Formations",
+            "description": "Formations"
+        },
+        {
+            "name": "Recettes",
+            "description": "Recettes"
+        }
+    ]
+}
