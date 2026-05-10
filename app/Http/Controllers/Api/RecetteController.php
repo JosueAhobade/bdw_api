@@ -34,7 +34,11 @@ class RecetteController extends Controller
      */
     public function index()
     {
-        return response()->json(Recettes::with('employe', 'inscription')->latest()->paginate(10), 200);
+        $recettes = Recettes::with('employe', 'inscription')
+            ->latest()
+            ->paginate(10); // 10 éléments par page
+
+        return response()->json($recettes, 200);
     }
 
     /**
