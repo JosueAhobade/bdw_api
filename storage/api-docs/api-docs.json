@@ -17,11 +17,33 @@
                 "tags": [
                     "Dépenses"
                 ],
-                "summary": "Liste des dépenses",
+                "summary": "Liste paginée des dépenses",
                 "operationId": "81581bb883f97976927b088c7f3f1dbf",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Numéro de page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Nombre d'éléments par page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 10
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "Liste récupérée"
+                        "description": "Liste paginée récupérée"
                     }
                 }
             },
@@ -60,7 +82,10 @@
                         "name": "id",
                         "in": "path",
                         "description": "ID de la dépense",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
@@ -80,7 +105,10 @@
                         "name": "id",
                         "in": "path",
                         "description": "ID de la dépense",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "requestBody": {
@@ -110,7 +138,10 @@
                         "name": "id",
                         "in": "path",
                         "description": "ID de la dépense",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
@@ -230,11 +261,33 @@
                 "tags": [
                     "Recettes"
                 ],
-                "summary": "Liste des recettes",
+                "summary": "Liste paginée des recettes",
                 "operationId": "84792ae35c0177166697c9c639835736",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Numéro de page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Nombre d'éléments par page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 10
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "Liste récupérée"
+                        "description": "Liste paginée récupérée"
                     }
                 }
             },
@@ -272,7 +325,11 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "required": true
+                        "description": "ID de la recette",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
@@ -291,7 +348,11 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "required": true
+                        "description": "ID de la recette",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "requestBody": {
@@ -320,7 +381,11 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "required": true
+                        "description": "ID de la recette",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {

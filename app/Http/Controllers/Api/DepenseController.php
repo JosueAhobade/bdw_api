@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Depenses\StoreDepenseRequest;
 use App\Http\Requests\Depenses\UpdateDepenseRequest;
 use App\Models\Depenses;
+use Illuminate\Http\Request;
 
 /**
  * @OA\Schema(
@@ -26,20 +27,40 @@ class DepenseController extends Controller
     /**
      * @OA\Get(
      *     path="/api/depenses",
-     *     summary="Liste des dépenses",
+     *     summary="Liste paginée des dépenses",
      *     tags={"Dépenses"},
+     *
+     *     @OA\Parameter(
+     *         name="page",
+     *         in="query",
+     *         required=false,
+     *         description="Numéro de page",
+     *         @OA\Schema(type="integer", example=1)
+     *     ),
+     *
+     *     @OA\Parameter(
+     *         name="per_page",
+     *         in="query",
+     *         required=false,
+     *         description="Nombre d'éléments par page",
+     *         @OA\Schema(type="integer", example=10)
+     *     ),
+     *
      *     @OA\Response(
      *         response=200,
-     *         description="Liste récupérée"
+     *         description="Liste paginée récupérée"
      *     )
      * )
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(
-            Depenses::with('employe')->latest()->get(),
-            200
-        );
+        $perPage = $request->get('per_page', 10);
+
+        $depenses = Depenses::with('employe')
+            ->latest()
+            ->paginate($perPage);
+
+        return response()->json($depenses, 200);
     }
 
     /**
@@ -76,7 +97,8 @@ class DepenseController extends Controller
      *         name="id",
      *         in="path",
      *         required=true,
-     *         description="ID de la dépense"
+     *         description="ID de la dépense",
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -86,7 +108,10 @@ class DepenseController extends Controller
      */
     public function show(Depenses $depense)
     {
-        return response()->json($depense->load('employe'), 200);
+        return response()->json(
+            $depense->load('employe'),
+            200
+        );
     }
 
     /**
@@ -98,7 +123,8 @@ class DepenseController extends Controller
      *         name="id",
      *         in="path",
      *         required=true,
-     *         description="ID de la dépense"
+     *         description="ID de la dépense",
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\RequestBody(
      *         required=true,
@@ -129,7 +155,8 @@ class DepenseController extends Controller
      *         name="id",
      *         in="path",
      *         required=true,
-     *         description="ID de la dépense"
+     *         description="ID de la dépense",
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
      *         response=204,
