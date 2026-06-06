@@ -20,6 +20,7 @@ class Associes extends Model
         'type_association',
         'date_adhesion',
         'notes',
+        'solde',
     ];
 
 

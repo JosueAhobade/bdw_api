@@ -37,4 +37,9 @@ class Formations extends Model
     {
         return $this->hasMany(Sessions::class);
     }
+
+    public function events()
+{
+    return $this->hasMany(Event::class);
+}
 }

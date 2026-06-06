@@ -23,6 +23,8 @@ return new class extends Migration
             // Catégorie d'associé (ex : partenaire, actionnaire…)
             $table->decimal('part', 10, 2)->nullable();
 
+            $table->decimal('solde', 10, 2)->nullable();
+
             // Dates
             $table->date('date_adhesion')->nullable();
 
