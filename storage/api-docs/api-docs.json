@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:8000",
+            "url": "https://ahobade-locations/bdw-api",
             "description": "Serveur principal"
         }
     ],
@@ -528,6 +528,28 @@
                     }
                 }
             }
+        },
+        "/api/statistics": {
+            "get": {
+                "tags": [
+                    "Statistics"
+                ],
+                "summary": "Récupérer les statistiques globales",
+                "description": "Retourne les statistiques générales de l'application : total des recettes, total des dépenses, solde, nombre d'événements, évolution mensuelle, derniers mouvements et événements à venir.",
+                "operationId": "bb183471907939a23e238bdabe05aa9f",
+                "responses": {
+                    "200": {
+                        "description": "Statistiques récupérées avec succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StatisticsResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -685,6 +707,73 @@
                     }
                 },
                 "type": "object"
+            },
+            "MonthlyStatistic": {
+                "properties": {
+                    "month": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "recettes": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 150000
+                    },
+                    "depenses": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 75000
+                    }
+                },
+                "type": "object"
+            },
+            "StatisticsResponse": {
+                "properties": {
+                    "total_recettes": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 1250000
+                    },
+                    "total_depenses": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 450000
+                    },
+                    "solde": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 800000
+                    },
+                    "events_count": {
+                        "type": "integer",
+                        "example": 12
+                    },
+                    "monthly": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MonthlyStatistic"
+                        }
+                    },
+                    "upcoming_events": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Event"
+                        }
+                    },
+                    "recent_recettes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Recette"
+                        }
+                    },
+                    "recent_depenses": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Depense"
+                        }
+                    }
+                },
+                "type": "object"
             }
         }
     },
@@ -704,6 +793,10 @@
         {
             "name": "Recettes",
             "description": "Recettes"
+        },
+        {
+            "name": "Statistics",
+            "description": "Statistics"
         }
     ]
 }

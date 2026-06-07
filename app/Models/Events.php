@@ -26,7 +26,7 @@ class Events extends Model
 
     public function formation()
     {
-        return $this->belongsTo(Formation::class);
+        return $this->belongsTo(Formations::class);
     }
     
 }
