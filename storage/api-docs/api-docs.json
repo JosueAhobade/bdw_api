@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "https://ahobade-locations/bdw-api",
+            "url": "https://ahobade-locations.com/bdw-api",
             "description": "Serveur principal"
         }
     ],
