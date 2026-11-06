@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\AssocieMouvement;
 use App\Models\Depenses;
 use App\Models\Preuve;
 use App\Models\Recettes;
@@ -26,6 +27,11 @@ class PreuveController extends Controller
     public function storeForRecette(Request $request, Recettes $recette)
     {
         return $this->store($request, $recette, 'recettes');
+    }
+
+    public function storeForMouvement(Request $request, AssocieMouvement $mouvement)
+    {
+        return $this->store($request, $mouvement, 'associes');
     }
 
     protected function store(Request $request, Model $operation, string $folder)

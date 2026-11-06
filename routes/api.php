@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AssocieController;
+use App\Http\Controllers\Api\AssocieMouvementController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DepenseController;
 use App\Http\Controllers\Api\RecetteController;
@@ -41,6 +43,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/preuves/{preuve}/download', [PreuveController::class, 'download']);
 
+    // Comptes courants d'associés
+    Route::get('/associes', [AssocieController::class, 'index']);
+    Route::get('/associes/{associe}', [AssocieController::class, 'show']);
+    Route::get('/associes/{associe}/mouvements', [AssocieMouvementController::class, 'index']);
+    Route::get('/associes/{associe}/mouvements/export', [AssocieMouvementController::class, 'export']);
+    Route::get('/mouvements-associes/{mouvement}', [AssocieMouvementController::class, 'show']);
+
     Route::apiResource('formations', FormationController::class)->only(['index', 'show']);
     Route::apiResource('events', EventsController::class)->only(['index', 'show']);
     Route::get('/statistics', [StatisticsController::class, 'index']);
@@ -54,6 +63,14 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/recettes/{recette}/preuves', [PreuveController::class, 'storeForRecette']);
 
         Route::delete('/preuves/{preuve}', [PreuveController::class, 'destroy']);
+
+        Route::post('/associes', [AssocieController::class, 'store']);
+        Route::put('/associes/{associe}', [AssocieController::class, 'update']);
+        Route::delete('/associes/{associe}', [AssocieController::class, 'destroy']);
+        Route::post('/associes/{associe}/mouvements', [AssocieMouvementController::class, 'store']);
+        Route::put('/mouvements-associes/{mouvement}', [AssocieMouvementController::class, 'update']);
+        Route::delete('/mouvements-associes/{mouvement}', [AssocieMouvementController::class, 'destroy']);
+        Route::post('/mouvements-associes/{mouvement}/preuves', [PreuveController::class, 'storeForMouvement']);
 
         Route::apiResource('formations', FormationController::class)->only(['store', 'update', 'destroy']);
         Route::apiResource('events', EventsController::class)->only(['store', 'update', 'destroy']);
