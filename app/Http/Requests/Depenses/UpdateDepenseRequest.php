@@ -32,7 +32,6 @@ class UpdateDepenseRequest extends FormRequest
             'description' => 'nullable|string',
             'date_depense' => 'sometimes|date',
             'employe_id' => 'nullable|exists:employes,id',
-            'preuve' => 'nullable|string|max:255',
             'status' => 'sometimes|string|max:50',
         ];
     }

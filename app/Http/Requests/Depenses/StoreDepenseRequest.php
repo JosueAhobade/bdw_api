@@ -32,7 +32,6 @@ class StoreDepenseRequest extends FormRequest
             'description' => 'nullable|string',
             'date_depense' => 'required|date',
             'employe_id' => 'nullable|exists:employes,id',
-            'preuve' => 'nullable|string|max:255',
             'status' => 'nullable|string|max:50',
         ];
     }

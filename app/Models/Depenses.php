@@ -19,10 +19,26 @@ class Depenses extends Model
         'description',
         'date_depense',
         'employe_id',
-        'fournisseur_id',
-        'preuve',
         'status',
     ];
+
+    protected $casts = [
+        'montant' => 'decimal:2',
+        'date_depense' => 'date:Y-m-d',
+    ];
+
+    protected static function booted()
+    {
+        // Supprime aussi les fichiers de preuve liés
+        static::deleting(function ($operation) {
+            $operation->preuves->each->delete();
+        });
+    }
+
+    public function preuves()
+    {
+        return $this->morphMany(Preuve::class, 'preuvable')->latest();
+    }
 
     public function employe()
     {
